@@ -43,6 +43,19 @@ function checkAnswer() {
 
 function calculateCorrectAnswer() {
 
+    // Get the operands (the numbers) and the operator (+, -, etc.) directly from the 
+    // The parseInt function is used to make sure the value is trated as an integer (by default when JS gets data from the DOM it returns it as a string)
+    let operand1 = parseInt(document.getElementById("operand1").innerText);
+    let operand2 = parseInt(document.getElementById("operand2").innerText);
+    let operator = document.getElementById("operator").innerText;
+
+    // Calculate the correct answer based on the game type and the game type is being determined by the operator
+    if (operator === "+") {
+        return [operand1 + operand2, "addition"];
+    } else {
+        alert(`Unimplemented operator ${operator}`);
+        throw `Unimplemented operator ${operator}, aborting!`
+    }
 }
 
 function incrementScore() {
