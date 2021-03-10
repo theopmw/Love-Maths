@@ -29,6 +29,8 @@ function runGame(gameType) {
     // Check which gameType is being run with an if..else statement and call the appropriate function to display the question
     if (gameType === "addition") {
         displayAdditionQuestion(num1, num2);
+    } else if (gameType === "multiply") {
+        displayMultiplyQuestion(num1, num2);
     } else {
         alert(`Unknown game type ${gameType}`);
         throw `Unknown game type ${gameType}, aborting!`
@@ -68,6 +70,8 @@ function calculateCorrectAnswer() {
     // Calculate the correct answer based on the game type and the game type is being determined by the operator
     if (operator === "+") {
         return [operand1 + operand2, "addition"];
+    } else if (operator === "x") {
+        return [operand1 * operand2, "multiply"];
     } else {
         alert(`Unimplemented operator ${operator}`);
         throw `Unimplemented operator ${operator}, aborting!`
@@ -86,7 +90,6 @@ function incrementWrongAnswer() {
     // Gets current tally of incorrect answers from the DOM and increments it by 1
     let oldScore = parseInt(document.getElementById("incorrect").innerText); // Retrieves value from DOM and puts it in the oldScore variable
     document.getElementById("incorrect").innerText = ++oldScore; // Write it back to the DOM (note: innerText and textContent are interchangable) (note: ++oldScore === oldScore + 1)
-
 }
 
 function displayAdditionQuestion(operand1, operand2) {
@@ -103,8 +106,14 @@ function displaySubtractionQuestion() {
     
 }
 
-function displayMultiplyQuestion() {
-    
+function displayMultiplyQuestion(operand1, operand2) {
+
+    // Get element with ID of "operand1" and set its content to the 1st random number
+    document.getElementById("operand1").textContent = operand1;
+    // Get element with ID of "operand2" and set its content to the 2nd random number
+    document.getElementById("operand2").textContent = operand2;
+    // Get the element with the ID of operator and set that to a x sign.
+    document.getElementById("operator").textContent = "x";
 }
 
 function displayDivisionQuestion() {
