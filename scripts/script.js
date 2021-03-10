@@ -31,12 +31,14 @@ function runGame(gameType) {
         displayAdditionQuestion(num1, num2);
     } else if (gameType === "multiply") {
         displayMultiplyQuestion(num1, num2);
+    } else if (gameType === "subtract") {
+        displaySubtractionQuestion(num1, num2);
+    } else if (gameType === "division") {
+        displayDivisionQuestion(num1, num2);
     } else {
         alert(`Unknown game type ${gameType}`);
         throw `Unknown game type ${gameType}, aborting!`
     }
-
-
 }
 
 function checkAnswer() {
@@ -72,6 +74,8 @@ function calculateCorrectAnswer() {
         return [operand1 + operand2, "addition"];
     } else if (operator === "x") {
         return [operand1 * operand2, "multiply"];
+    } else if (operator === "-") {
+        return [operand1 - operand2, "subtract"];
     } else {
         alert(`Unimplemented operator ${operator}`);
         throw `Unimplemented operator ${operator}, aborting!`
@@ -102,8 +106,14 @@ function displayAdditionQuestion(operand1, operand2) {
     document.getElementById("operator").textContent = "+";
 }
 
-function displaySubtractionQuestion() {
-    
+function displaySubtractionQuestion(operand1, operand2) {
+
+    // Get element with ID of "operand1" and and use a ternary operator to check whether operand1 > operand2 and display operand1 if it is larger (condition ? true(if) part : false(else) part)
+    document.getElementById("operand1").textContent = operand1 > operand2 ? operand1 : operand2;
+    // Get element with ID of "operand1" and and use a ternary operator to check whether operand1 > operand2 and display operand2 if it is larger (condition ? true(if) part : false(else) part)
+    document.getElementById("operand2").textContent = operand1 > operand2 ? operand2 : operand1;
+    // Get the element with the ID of operator and set that to a - sign.
+    document.getElementById("operator").textContent = "-";
 }
 
 function displayMultiplyQuestion(operand1, operand2) {
