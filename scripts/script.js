@@ -48,7 +48,7 @@ function checkAnswer() {
     let calculatedAnswer = calculateCorrectAnswer(); // Gets correct answer from the calculateCorrectAnswer function
     let isCorrect = userAnswer === calculatedAnswer[0]; // Sets an isCorrect variable which will be true or false depending on whether the user's answer matches the correct answer
 
-    // Let th user know if they got the answer right, or if wrong answer was given, provide them with the correct answer
+    // Let the user know if they got the answer right, or if wrong answer was given, provide them with the correct answer
     if (isCorrect) {
         alert("Congratulations! You got it right!");
         incrementScore();
@@ -76,6 +76,8 @@ function calculateCorrectAnswer() {
         return [operand1 * operand2, "multiply"];
     } else if (operator === "-") {
         return [operand1 - operand2, "subtract"];
+    } else if (operator === "÷") {
+        return [operand1 / operand2, "division"]; // operand1 * operand2) / operand1
     } else {
         alert(`Unimplemented operator ${operator}`);
         throw `Unimplemented operator ${operator}, aborting!`
@@ -126,6 +128,13 @@ function displayMultiplyQuestion(operand1, operand2) {
     document.getElementById("operator").textContent = "x";
 }
 
-function displayDivisionQuestion() {
+function displayDivisionQuestion(operand1, operand2) {
+    
+    // Get element with ID of "operand1" and and use a ternary operator to check whether operand1 > operand2 and display operand1 if it is larger (condition ? true(if) part : false(else) part)
+    document.getElementById("operand1").textContent = operand1 * operand2
+    // Get element with ID of "operand1" and and use a ternary operator to check whether operand1 > operand2 and display operand2 if it is larger (condition ? true(if) part : false(else) part)
+    document.getElementById("operand2").textContent = operand1
+    // Get the element with the ID of operator and set that to a ÷ sign.
+    document.getElementById("operator").textContent = "÷";
 
 }
