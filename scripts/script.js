@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
     for (let button of buttons) {
         button.addEventListener("click", function() {
             if (this.getAttribute("data-type") === "submit") {
-                alert("You clicked Submit!");
+               checkAnswer();
             } else {
                 let gameType = this.getAttribute("data-type");
                 runGame(gameType);
@@ -39,6 +39,20 @@ function runGame(gameType) {
 
 function checkAnswer() {
 
+    // Checks the answer (retrieved from the user inputed answer-box in the DOM) against the first element in the returned calculateCorrectAnswer array 
+    let userAnswer = parseInt(document.getElementById("answer-box").value); // Retrieves answer from the DOM
+    let calculatedAnswer = calculateCorrectAnswer(); // Gets correct answer from the calculateCorrectAnswer function
+    let isCorrect = userAnswer === calculatedAnswer[0]; // Sets an isCorrect variable which will be true or false depending on whether the user's answer matches the correct answer
+
+    // Let th user know if they got the answer right, or if wrong answer was given, provide them with the correct answer
+    if (isCorrect) {
+        alert("Congratulations! You got it right!");
+    } else {
+        alert(`Awwww... you answered ${userAnswer}. The correct answer was ${calculatedAnswer[0]}!`);
+    }
+
+    // Runs another game of the same type using the second element from the calculatedAnswer array
+    runGame(calculatedAnswer[1]);
 }
 
 function calculateCorrectAnswer() {
