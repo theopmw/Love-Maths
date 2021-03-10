@@ -13,12 +13,25 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         })
     }
+    
+    // Set event listener to allow enter/return to submit answers
+    document.getElementById("answer-box").addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            checkAnswer();
+        }
+    })
 
     runGame("addition");
 })
 
 // runGame function accepts gameType as a parameter
 function runGame(gameType) {
+
+    // Set value of the answer box to an empty string each time the game is run (page is loaded)
+    document.getElementById("answer-box").value = "";
+
+    // Set the focus so the cursor is in the answer box every time the game is run (page is loaded)
+    document.getElementById("answer-box").focus();
 
     // Generate 2 random numbers between 1 and 25
     // Math.floor rounds down to the whole number
@@ -136,5 +149,4 @@ function displayDivisionQuestion(operand1, operand2) {
     document.getElementById("operand2").textContent = operand1
     // Get the element with the ID of operator and set that to a ÷ sign.
     document.getElementById("operator").textContent = "÷";
-
 }
