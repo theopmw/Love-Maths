@@ -9,18 +9,32 @@ document.addEventListener("DOMContentLoaded", function() {
                 alert("You clicked Submit!");
             } else {
                 let gameType = this.getAttribute("data-type");
-                alert(`You clicked the ${gameType} button`);
+                runGame(gameType);
             }
         })
     }
+
+    runGame("addition");
 })
 
-function runGame() { 
+// runGame function accepts gameType as a parameter
+function runGame(gameType) {
+
     // Generate 2 random numbers between 1 and 25
     // Math.floor rounds down to the whole number
     // Math.random generates random numbers
     let num1 = Math.floor(Math.random() * 25) + 1;
-    let num2 = Math.floor(Math.random() * 25) + 1
+    let num2 = Math.floor(Math.random() * 25) + 1;
+
+    // Check which gameType is being run with an if..else statement and call the appropriate function to display the question
+    if (gameType === "addition") {
+        displayAdditionQuestion(num1, num2);
+    } else {
+        alert(`Unknown game type ${gameType}`);
+        throw `Unknown game type ${gameType}, aborting!`
+    }
+
+
 }
 
 function checkAnswer() {
@@ -39,8 +53,14 @@ function incrementWrongAnswer() {
 
 }
 
-function displayAdditionQuestion() {
-
+function displayAdditionQuestion(operand1, operand2) {
+    
+    // Get element with ID of "operand1" and set its content to the 1st random number
+    document.getElementById("operand1").textContent = operand1;
+    // Get element with ID of "operand2" and set its content to the 2nd random number
+    document.getElementById("operand2").textContent = operand2;
+    // Get the element with the ID of operator and set that to a + sign.
+    document.getElementById("operator").textContent = "+";
 }
 
 function displaySubtractionQuestion() {
